@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exclusivas La Casica | Productos Gourmet</title>
+<style>
+  /* ── Variables de color ── */
+  :root {
+    --verde:       #2d5a27;
+    --verde-claro: #4a7c3f;
+    --dorado:      #b8860b;
+    --dorado-claro:#d4a017;
+    --crema:       #faf8f3;
+    --crema-oscura:#f0ede4;
+    --texto:       #1a1a1a;
+    --texto-gris:  #555;
+    --borde:       #ddd8cc;
+    --blanco:      #ffffff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--crema); color:var(--texto); }
+
+  /* ── NAV ── */
+  nav {
+    background:var(--verde);
+    padding:0 2rem;
+    display:flex; align-items:center; justify-content:space-between;
+    position:sticky; top:0; z-index:100;
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+  }
+  .nav-logo { display:flex; align-items:center; gap:.75rem; text-decoration:none; padding:.75rem 0; }
+  .nav-logo-icon {
+    width:36px; height:36px; background:var(--dorado);
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:18px; color:var(--blanco); font-weight:700;
+  }
+  .nav-logo span { color:var(--blanco); font-size:1.1rem; font-weight:600; letter-spacing:.5px; }
+  .nav-right { display:flex; align-items:center; gap:1.5rem; }
+  .nav-link { color:rgba(255,255,255,.85); text-decoration:none; font-size:.9rem; transition:color .2s; }
+  .nav-link:hover { color:var(--dorado-claro); }
+  #btn-carrito {
+    background:var(--dorado); color:var(--blanco);
+    border:none; border-radius:8px; padding:.5rem 1rem;
+    cursor:pointer; font-size:.9rem; font-weight:600;
+    display:flex; align-items:center; gap:.5rem;
+    transition:background .2s;
+  }
+  #btn-carrito:hover { background:var(--dorado-claro); }
+  #carrito-badge {
+    background:var(--blanco); color:var(--dorado);
+    border-radius:50%; width:20px; height:20px;
+    font-size:.75rem; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 60%, #6a9d5e 100%);
+    color:var(--blanco);
+    padding:5rem 2rem 4rem;
+    text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events:none;
+  }
+  .hero-badge {
+    display:inline-block; background:var(--dorado);
+    color:var(--blanco); font-size:.75rem; font-weight:600;
+    padding:.3rem .9rem; border-radius:20px; letter-spacing:1px;
+    text-transform:uppercase; margin-bottom:1.2rem;
+  }
+  .hero h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:700; margin-bottom:1rem; line-height:1.2; }
+  .hero p { font-size:1.1rem; opacity:.9; max-width:520px; margin:0 auto 2rem; line-height:1.7; }
+  .hero-btn {
+    display:inline-block; background:var(--dorado);
+    color:var(--blanco); text-decoration:none;
+    padding:.85rem 2.2rem; border-radius:8px;
+    font-weight:600; font-size:1rem;
+    transition:background .2s, transform .15s;
+  }
+  .hero-btn:hover { background:var(--dorado-claro); transform:translateY(-2px); }
+  .hero-stats {
+    display:flex; justify-content:center; gap:3rem;
+    margin-top:3rem; padding-top:2rem;
+    border-top:1px solid rgba(255,255,255,.2);
+  }
+  .hero-stat span:first-child { display:block; font-size:1.6rem; font-weight:700; color:var(--dorado-claro); }
+  .hero-stat span:last-child  { font-size:.8rem; opacity:.8; text-transform:uppercase; letter-spacing:.5px; }
+
+  /* ── SECCIÓN CATÁLOGO ── */
+  .seccion { padding:4rem 2rem; max-width:1100px; margin:0 auto; }
+  .seccion-titulo {
+    text-align:center; margin-bottom:2.5rem;
+  }
+  .seccion-titulo h2 { font-size:1.8rem; color:var(--verde); margin-bottom:.5rem; }
+  .seccion-titulo p  { color:var(--texto-gris); }
+  .separador {
+    width:60px; height:3px;
+    background:var(--dorado); border-radius:2px;
+    margin:.8rem auto 0;
+  }
+
+  /* ── GRID DE PRODUCTOS ── */
+  .productos-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:1.5rem;
+  }
+  .producto-card {
+    background:var(--blanco); border-radius:12px;
+    border:1px solid var(--borde);
+    overflow:hidden; transition:transform .2s, box-shadow .2s;
+    display:flex; flex-direction:column;
+  }
+  .producto-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,.1); }
+  .producto-img {
+    height:180px; background:var(--crema-oscura);
+    display:flex; align-items:center; justify-content:center;
+    font-size:3.5rem; position:relative;
+  }
+  .producto-badge-cat {
+    position:absolute; top:10px; left:10px;
+    background:var(--verde); color:var(--blanco);
+    font-size:.7rem; font-weight:600; padding:.25rem .6rem;
+    border-radius:20px; text-transform:uppercase; letter-spacing:.5px;
+  }
+  .producto-body { padding:1.2rem; flex:1; display:flex; flex-direction:column; gap:.5rem; }
+  .producto-nombre { font-size:1rem; font-weight:600; color:var(--texto); line-height:1.3; }
+  .producto-marca  { font-size:.8rem; color:var(--texto-gris); }
+  .producto-desc   { font-size:.85rem; color:var(--texto-gris); line-height:1.5; flex:1; }
+  .producto-pie    { display:flex; align-items:center; justify-content:space-between; margin-top:.8rem; }
+  .producto-precio { font-size:1.3rem; font-weight:700; color:var(--dorado); }
+  .producto-unidad { font-size:.72rem; color:var(--texto-gris); }
+  .producto-precio-caja { font-size:.75rem; color:var(--verde); font-weight:500; margin-top:.1rem; }
+  .btn-add {
+    background:var(--verde); color:var(--blanco);
+    border:none; border-radius:8px; padding:.5rem 1rem;
+    cursor:pointer; font-size:.85rem; font-weight:600;
+    transition:background .2s;
+    white-space:nowrap;
+  }
+  .btn-add:hover { background:var(--verde-claro); }
+
+  /* ── SECCIÓN NOSOTROS ── */
+  .nosotros {
+    background:var(--verde);
+    color:var(--blanco);
+    padding:4rem 2rem;
+    text-align:center;
+  }
+  .nosotros h2 { font-size:1.8rem; margin-bottom:1rem; }
+  .nosotros p  { max-width:600px; margin:0 auto; opacity:.9; line-height:1.8; }
+  .nosotros-grid {
+    display:flex; justify-content:center; gap:3rem;
+    flex-wrap:wrap; margin-top:3rem;
+  }
+  .nosotros-item { text-align:center; }
+  .nosotros-item .icono {
+    width:56px; height:56px; background:rgba(255,255,255,.15);
+    border-radius:50%; margin:0 auto .8rem;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem;
+  }
+  .nosotros-item h3 { font-size:.95rem; font-weight:600; margin-bottom:.3rem; }
+  .nosotros-item p  { font-size:.82rem; opacity:.8; max-width:160px; }
+
+  /* ── CONTACTO ── */
+  .contacto-bar {
+    background:var(--crema-oscura);
+    border-top:1px solid var(--borde);
+    padding:2rem;
+    display:flex; justify-content:center; gap:3rem; flex-wrap:wrap;
+  }
+  .contacto-item { display:flex; align-items:center; gap:.7rem; }
+  .contacto-item .ico { font-size:1.2rem; }
+  .contacto-item a { color:var(--verde); font-weight:600; text-decoration:none; }
+  .contacto-item a:hover { color:var(--dorado); }
+  .contacto-item span { color:var(--texto-gris); font-size:.9rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background:var(--verde);
+    color:rgba(255,255,255,.7);
+    text-align:center; padding:1.5rem;
+    font-size:.85rem;
+  }
+  footer strong { color:var(--dorado-claro); }
+
+  /* ── MODAL PRODUCTO ── */
+  .overlay {
+    display:none; position:fixed; inset:0;
+    background:rgba(0,0,0,.55); z-index:200;
+    align-items:center; justify-content:center; padding:1rem;
+  }
+  .overlay.activo { display:flex; }
+  .modal {
+    background:var(--blanco); border-radius:16px;
+    max-width:480px; width:100%; padding:2rem;
+    position:relative; max-height:90vh; overflow-y:auto;
+  }
+  .modal-cerrar {
+    position:absolute; top:1rem; right:1rem;
+    background:none; border:none; font-size:1.4rem;
+    cursor:pointer; color:var(--texto-gris);
+    line-height:1;
+  }
+  .modal-icono { font-size:4rem; text-align:center; margin-bottom:1rem; }
+  .modal h2 { font-size:1.3rem; color:var(--verde); margin-bottom:.3rem; }
+  .modal .modal-marca { font-size:.85rem; color:var(--texto-gris); margin-bottom:1rem; }
+  .modal-desc { font-size:.9rem; color:var(--texto-gris); line-height:1.7; margin-bottom:1.2rem; }
+  .modal-features { list-style:none; margin-bottom:1.2rem; }
+  .modal-features li {
+    font-size:.88rem; padding:.35rem 0;
+    border-bottom:1px solid var(--crema-oscura);
+    display:flex; gap:.6rem;
+  }
+  .modal-features li::before { content:'✓'; color:var(--verde); font-weight:700; }
+  .modal-precio-bloque { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem; }
+  .modal-precio { font-size:1.8rem; font-weight:700; color:var(--dorado); }
+  .modal-info-caja { font-size:.8rem; color:var(--verde); background:var(--crema-oscura); padding:.4rem .8rem; border-radius:6px; }
+  .modal-cantidad { display:flex; align-items:center; gap:.8rem; margin-bottom:1.2rem; }
+  .modal-cantidad label { font-size:.9rem; font-weight:600; }
+  .modal-cantidad input {
+    width:70px; padding:.4rem; border:1px solid var(--borde);
+    border-radius:6px; text-align:center; font-size:1rem;
+  }
+  .modal-cantidad-info { font-size:.8rem; color:var(--texto-gris); }
+  .btn-modal-add {
+    width:100%; background:var(--verde); color:var(--blanco);
+    border:none; border-radius:10px; padding:1rem;
+    font-size:1rem; font-weight:600; cursor:pointer;
+    transition:background .2s;
+  }
+  .btn-modal-add:hover { background:var(--verde-claro); }
+
+  /* ── DRAWER CARRITO ── */
+  .carrito-drawer {
+    position:fixed; top:0; right:0; bottom:0; width:360px;
+    background:var(--blanco); box-shadow:-4px 0 24px rgba(0,0,0,.15);
+    z-index:300; transform:translateX(100%);
+    transition:transform .3s ease; display:flex; flex-direction:column;
+  }
+  .carrito-drawer.abierto { transform:translateX(0); }
+  .carrito-header {
+    background:var(--verde); color:var(--blanco);
+    padding:1.2rem 1.5rem;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .carrito-header h3 { font-size:1.1rem; }
+  .btn-cerrar-carrito { background:none; border:none; color:var(--blanco); font-size:1.4rem; cursor:pointer; }
+  .carrito-items { flex:1; overflow-y:auto; padding:1rem; }
+  .carrito-vacio { text-align:center; color:var(--texto-gris); margin-top:3rem; font-size:.9rem; }
+  .carrito-vacio .ico-vacio { font-size:3rem; margin-bottom:1rem; display:block; }
+  .item-carrito {
+    display:flex; gap:.8rem; padding:.8rem 0;
+    border-bottom:1px solid var(--crema-oscura);
+    align-items:center;
+  }
+  .item-carrito .ico { font-size:1.8rem; min-width:40px; text-align:center; }
+  .item-info { flex:1; }
+  .item-info .nombre { font-size:.88rem; font-weight:600; }
+  .item-info .precio-unit { font-size:.78rem; color:var(--texto-gris); }
+  .item-controles { display:flex; align-items:center; gap:.4rem; }
+  .btn-qty {
+    width:26px; height:26px; border:1px solid var(--borde);
+    background:var(--crema); border-radius:6px;
+    cursor:pointer; font-size:.9rem; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .btn-qty:hover { background:var(--crema-oscura); }
+  .qty-num { font-size:.9rem; font-weight:600; min-width:20px; text-align:center; }
+  .item-total { font-size:.9rem; font-weight:700; color:var(--dorado); min-width:50px; text-align:right; }
+  .btn-eliminar { background:none; border:none; cursor:pointer; font-size:.9rem; color:#ccc; padding:.2rem; }
+  .btn-eliminar:hover { color:#e74c3c; }
+  .carrito-footer { padding:1.2rem; border-top:1px solid var(--borde); }
+  .carrito-total-linea { display:flex; justify-content:space-between; margin-bottom:.5rem; font-size:.9rem; color:var(--texto-gris); }
+  .carrito-total-final { display:flex; justify-content:space-between; font-size:1.2rem; font-weight:700; color:var(--texto); margin-bottom:1rem; }
+  .btn-pedir-wa {
+    width:100%; background:#25d366; color:var(--blanco);
+    border:none; border-radius:10px; padding:1rem;
+    font-size:1rem; font-weight:600; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:.6rem;
+    transition:background .2s; margin-bottom:.6rem;
+  }
+  .btn-pedir-wa:hover { background:#1ebe5d; }
+  .btn-pedir-email {
+    width:100%; background:var(--verde); color:var(--blanco);
+    border:none; border-radius:10px; padding:.8rem;
+    font-size:.9rem; font-weight:600; cursor:pointer;
+    transition:background .2s;
+  }
+  .btn-pedir-email:hover { background:var(--verde-claro); }
+  .carrito-nota { font-size:.75rem; color:var(--texto-gris); text-align:center; margin-top:.6rem; }
+
+  /* ── NOTIFICACIÓN TOAST ── */
+  .toast {
+    position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(80px);
+    background:var(--verde); color:var(--blanco);
+    padding:.8rem 1.6rem; border-radius:30px;
+    font-size:.9rem; font-weight:600;
+    z-index:500; transition:transform .3s ease;
+    white-space:nowrap;
+  }
+  .toast.visible { transform:translateX(-50%) translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:600px) {
+    .hero-stats { gap:1.5rem; }
+    .carrito-drawer { width:100%; }
+    .nosotros-grid { gap:2rem; }
+    nav { padding:0 1rem; }
+    .nav-logo span { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════ NAVBAR ════ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">LC</div>
+    <span>Exclusivas La Casica</span>
+  </a>
+  <div class="nav-right">
+    <a href="#catalogo" class="nav-link">Catálogo</a>
+    <a href="#nosotros" class="nav-link">Nosotros</a>
+    <a href="#contacto" class="nav-link">Contacto</a>
+    <button id="btn-carrito" onclick="toggleCarrito()">
+      🛒 Carrito
+      <span id="carrito-badge">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <span class="hero-badge">🫒 Productos Gourmet · Petrer, Alicante</span>
+  <h1>Sabor auténtico,<br>calidad premium</h1>
+  <p>Distribuimos los mejores productos gourmet para hostelería y particulares. Del campo a tu mesa, con la confianza de Exclusivas La Casica.</p>
+  <a href="#catalogo" class="hero-btn">Ver catálogo</a>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span>100%</span><span>Natural</span>
+    </div>
+    <div class="hero-stat">
+      <span>3+</span><span>Productos</span>
+    </div>
+    <div class="hero-stat">
+      <span>HORECA</span><span>Especialistas</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CATÁLOGO ════ -->
+<section class="seccion" id="catalogo">
+  <div class="seccion-titulo">
+    <h2>Nuestro Catálogo</h2>
+    <p>Selección de productos de máxima calidad para hostelería y hogar</p>
+    <div class="separador"></div>
+  </div>
+  <div class="productos-grid" id="productos-grid">
+    <!-- Las tarjetas se generan por JavaScript -->
+  </div>
+</section>
+
+<!-- ════ NOSOTROS ════ -->
+<section class="nosotros" id="nosotros">
+  <h2>¿Por qué Exclusivas La Casica?</h2>
+  <p>Somos una empresa familiar de Petrer (Alicante) comprometida con ofrecer productos de la más alta calidad, directamente del productor a tu negocio o mesa.</p>
+  <div class="nosotros-grid">
+    <div class="nosotros-item">
+      <div class="icono">🫒</div>
+      <h3>Origen garantizado</h3>
+      <p>Productos de procedencia certificada y trazable</p>
+    </div>
+    <div class="nosotros-item">
+      <div class="icono">📦</div>
+      <h3>Formato hostelería</h3>
+      <p>Cajas completas diseñadas para profesionales</p>
+    </div>
+    <div class="nosotros-item">
+      <div class="icono">💬</div>
+      <h3>Trato directo</h3>
+      <p>Pedidos por WhatsApp con atención personalizada</p>
+    </div>
+    <div class="nosotros-item">
+      <div class="icono">✅</div>
+      <h3>Calidad constante</h3>
+      <p>Seleccionamos cada producto con rigor</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACTO ════ -->
+<div class="contacto-bar" id="contacto">
+  <div class="contacto-item">
+    <span class="ico">📞</span>
+    <div>
+      <div style="font-size:.75rem;color:var(--texto-gris);">Teléfono / WhatsApp</div>
+      <a href="tel:+34644366979">644 36 69 79 · Alejandro</a>
+    </div>
+  </div>
+  <div class="contacto-item">
+    <span class="ico">✉️</span>
+    <div>
+      <div style="font-size:.75rem;color:var(--texto-gris);">Correo electrónico</div>
+      <a href="mailto:Lacasicadeprimitivo@gmail.com">Lacasicadeprimitivo@gmail.com</a>
+    </div>
+  </div>
+  <div class="contacto-item">
+    <span class="ico">📍</span>
+    <div>
+      <div style="font-size:.75rem;color:var(--texto-gris);">Ubicación</div>
+      <span>Petrer, Alicante 03610</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <p>© 2025 <strong>Exclusivas La Casica</strong> · Petrer, Alicante · Todos los derechos reservados</p>
+</footer>
+
+<!-- ════ MODAL PRODUCTO ════ -->
+<div class="overlay" id="overlay" onclick="cerrarModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
+    <div class="modal-icono" id="modal-icono"></div>
+    <h2 id="modal-nombre"></h2>
+    <div class="modal-marca" id="modal-marca"></div>
+    <p class="modal-desc" id="modal-desc"></p>
+    <ul class="modal-features" id="modal-features"></ul>
+    <div class="modal-precio-bloque">
+      <div>
+        <div class="modal-precio" id="modal-precio"></div>
+        <div class="producto-unidad" id="modal-unidad"></div>
+      </div>
+      <div class="modal-info-caja" id="modal-caja"></div>
+    </div>
+    <div class="modal-cantidad">
+      <label>Cantidad:</label>
+      <input type="number" id="modal-qty" value="1" min="1" max="99">
+      <span class="modal-cantidad-info" id="modal-qty-info"></span>
+    </div>
+    <button class="btn-modal-add" onclick="addDesdeModal()">🛒 Añadir al carrito</button>
+  </div>
+</div>
+
+<!-- ════ DRAWER CARRITO ════ -->
+<div class="carrito-drawer" id="carrito-drawer">
+  <div class="carrito-header">
+    <h3>🛒 Tu pedido</h3>
+    <button class="btn-cerrar-carrito" onclick="toggleCarrito()">✕</button>
+  </div>
+  <div class="carrito-items" id="carrito-items"></div>
+  <div class="carrito-footer">
+    <div class="carrito-total-linea">
+      <span>Subtotal</span><span id="subtotal">0,00 €</span>
+    </div>
+    <div class="carrito-total-final">
+      <span>Total</span><span id="total-final">0,00 €</span>
+    </div>
+    <button class="btn-pedir-wa" onclick="pedirWhatsApp()">
+      💬 Pedir por WhatsApp
+    </button>
+    <button class="btn-pedir-email" onclick="pedirEmail()">
+      ✉️ Pedir por email
+    </button>
+    <p class="carrito-nota">Te contactaremos para confirmar el pedido y el método de pago</p>
+  </div>
+</div>
+
+<!-- ════ TOAST ════ -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Datos de productos ──────────────────────────────────────────────
+const productos = [
+  {
+    id: 1,
+    nombre: "Atún en Aceite de Girasol",
+    marca: "La Palmera · Formato Hostelería",
+    icono: "🐟",
+    categoria: "Conservas",
+    desc: "Atún listado (Katsuwonus pelamis) de textura firme y color claro. Ideal para ensaladillas, pizzas, rellenos de empanadas, pastas y bocadillos.",
+    features: ["Formato hostelería 1 kg", "Textura firme y color claro", "Ideal para cocina profesional", "Listo para usar"],
+    precio: 6.05,
+    unidad: "por bolsa (1 kg)",
+    caja: "Caja de 16 bolsas",
+    preciosCaja: 16
+  },
+  {
+    id: 2,
+    nombre: "AOVE Premium Picual",
+    marca: "Hacienda El Palo · Botella 500 ml",
+    icono: "🫒",
+    categoria: "Aceite de Oliva",
+    desc: "Aceite de Oliva Virgen Extra de alta calidad. Cosecha temprana en verde, filtrado. Ideal para crudo, aliños y cocina gourmet.",
+    features: ["Variedad Picual 100%", "Cosecha temprana en verde", "Aceitunas de fincas propias", "Natural y filtrado"],
+    precio: 12.15,
+    unidad: "por botella (500 ml)",
+    caja: "Caja de 12 botellas",
+    preciosCaja: 12
+  },
+  {
+    id: 3,
+    nombre: "AOVE Premium Picual",
+    marca: "Hacienda El Palo · Botella 100 ml",
+    icono: "🫒",
+    categoria: "Aceite de Oliva",
+    desc: "La misma calidad Premium en formato pequeño. Perfecto para bodas, eventos, comuniones y regalos gourmet personalizados.",
+    features: ["Variedad Picual 100%", "Formato evento / regalo", "Ideal bodas y comuniones", "Natural y filtrado"],
+    precio: 4.95,
+    unidad: "por botella (100 ml)",
+    caja: "Caja de 24 botellas",
+    preciosCaja: 24
+  },
+  {
+    id: 4,
+    nombre: "AOVE Picual Garrafa 5L",
+    marca: "Hacienda El Palo",
+    icono: "🍶",
+    categoria: "Aceite de Oliva",
+    desc: "AOVE de variedad Picual en formato garrafa PET de 5 litros. Perfecto para cocina profesional, válido para crudo y fritura.",
+    features: ["5 litros PET", "Apto para crudo y fritura", "Rico en antioxidantes", "Producción artesanal y mecánica"],
+    precio: 28.95,
+    unidad: "por garrafa (5 L)",
+    caja: "Caja de 3 garrafas",
+    preciosCaja: 3
+  },
+  {
+    id: 5,
+    nombre: "Pisto Fritada de Hortalizas",
+    marca: "Hortamed · Lata 3 kg",
+    icono: "🥫",
+    categoria: "Conservas",
+    desc: "Hortalizas frescas fritas en su punto exacto bañadas en salsa de tomate. Resultado casero garantizado para hostelería profesional.",
+    features: ["Lata A10 · 3 kg (2,65 kg neto)", "Fritada homogénea y consistente", "Ideal para HORECA", "Perfecto con carnes y pescados"],
+    precio: 5.80,
+    unidad: "por lata (3 kg)",
+    caja: "Caja de 6 unidades",
+    preciosCaja: 6
+  }
+];
+
+// ── Estado del carrito ──────────────────────────────────────────────
+let carrito = []; // [{producto, cantidad}]
+let productoActivo = null;
+
+// ── Renderizar tarjetas de producto ────────────────────────────────
+function renderProductos() {
+  const grid = document.getElementById('productos-grid');
+  grid.innerHTML = productos.map(p => `
+    <div class="producto-card">
+      <div class="producto-img">
+        ${p.icono}
+        <span class="producto-badge-cat">${p.categoria}</span>
+      </div>
+      <div class="producto-body">
+        <div class="producto-nombre">${p.nombre}</div>
+        <div class="producto-marca">${p.marca}</div>
+        <div class="producto-desc">${p.desc.substring(0,90)}…</div>
+        <div class="producto-pie">
+          <div>
+            <div class="producto-precio">${p.precio.toFixed(2)} €</div>
+            <div class="producto-unidad">${p.unidad}</div>
+            <div class="producto-precio-caja">
+              ${(p.precio * p.preciosCaja).toFixed(2)} € / ${p.caja}
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:.4rem;">
+            <button class="btn-add" onclick="abrirModal(${p.id})">Ver más</button>
+            <button class="btn-add" onclick="addRapido(${p.id})" style="background:var(--dorado);">+ Carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Modal de producto ───────────────────────────────────────────────
+function abrirModal(id) {
+  const p = productos.find(x => x.id === id);
+  if (!p) return;
+  productoActivo = p;
+  document.getElementById('modal-icono').textContent = p.icono;
+  document.getElementById('modal-nombre').textContent = p.nombre;
+  document.getElementById('modal-marca').textContent = p.marca;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal-precio').textContent = p.precio.toFixed(2) + ' €';
+  document.getElementById('modal-unidad').textContent = p.unidad;
+  document.getElementById('modal-caja').textContent = p.caja;
+  document.getElementById('modal-qty').value = 1;
+  document.getElementById('modal-qty-info').textContent =
+    `Total: ${p.precio.toFixed(2)} €`;
+  const ul = document.getElementById('modal-features');
+  ul.innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
+  // Actualizar precio al cambiar cantidad
+  document.getElementById('modal-qty').oninput = function() {
+    const qty = parseInt(this.value) || 1;
+    document.getElementById('modal-qty-info').textContent =
+      `Total: ${(p.precio * qty).toFixed(2)} €`;
+  };
+  document.getElementById('overlay').classList.add('activo');
+  document.body.style.overflow = 'hidden';
+}
+function cerrarModal(e) {
+  if (e && e.target !== document.getElementById('overlay')) return;
+  document.getElementById('overlay').classList.remove('activo');
+  document.body.style.overflow = '';
+  productoActivo = null;
+}
+function addDesdeModal() {
+  if (!productoActivo) return;
+  const qty = parseInt(document.getElementById('modal-qty').value) || 1;
+  addAlCarrito(productoActivo, qty);
+  cerrarModal();
+}
+
+// ── Add rápido desde tarjeta ────────────────────────────────────────
+function addRapido(id) {
+  const p = productos.find(x => x.id === id);
+  if (p) addAlCarrito(p, 1);
+}
+
+// ── Lógica del carrito ──────────────────────────────────────────────
+function addAlCarrito(producto, cantidad) {
+  const idx = carrito.findIndex(i => i.producto.id === producto.id);
+  if (idx >= 0) {
+    carrito[idx].cantidad += cantidad;
+  } else {
+    carrito.push({ producto, cantidad });
+  }
+  renderCarrito();
+  mostrarToast(`✓ ${producto.nombre} añadido`);
+}
+function cambiarCantidad(id, delta) {
+  const idx = carrito.findIndex(i => i.producto.id === id);
+  if (idx < 0) return;
+  carrito[idx].cantidad += delta;
+  if (carrito[idx].cantidad <= 0) carrito.splice(idx, 1);
+  renderCarrito();
+}
+function eliminarItem(id) {
+  carrito = carrito.filter(i => i.producto.id !== id);
+  renderCarrito();
+}
+
+function renderCarrito() {
+  // Badge
+  const total = carrito.reduce((s, i) => s + i.cantidad, 0);
+  document.getElementById('carrito-badge').textContent = total;
+
+  // Items
+  const cont = document.getElementById('carrito-items');
+  if (!carrito.length) {
+    cont.innerHTML = `<div class="carrito-vacio">
+      <span class="ico-vacio">🛒</span>
+      Tu carrito está vacío.<br>¡Añade algún producto!
+    </div>`;
+  } else {
+    cont.innerHTML = carrito.map(i => `
+      <div class="item-carrito">
+        <div class="ico">${i.producto.icono}</div>
+        <div class="item-info">
+          <div class="nombre">${i.producto.nombre}</div>
+          <div class="precio-unit">${i.producto.precio.toFixed(2)} € · ${i.producto.unidad}</div>
+        </div>
+        <div class="item-controles">
+          <button class="btn-qty" onclick="cambiarCantidad(${i.producto.id},-1)">−</button>
+          <span class="qty-num">${i.cantidad}</span>
+          <button class="btn-qty" onclick="cambiarCantidad(${i.producto.id},1)">+</button>
+        </div>
+        <div class="item-total">${(i.producto.precio * i.cantidad).toFixed(2)} €</div>
+        <button class="btn-eliminar" onclick="eliminarItem(${i.producto.id})">✕</button>
+      </div>
+    `).join('');
+  }
+
+  // Totales
+  const subtotal = carrito.reduce((s, i) => s + i.producto.precio * i.cantidad, 0);
+  document.getElementById('subtotal').textContent = subtotal.toFixed(2) + ' €';
+  document.getElementById('total-final').textContent = subtotal.toFixed(2) + ' €';
+}
+
+// ── Toggle drawer carrito ───────────────────────────────────────────
+function toggleCarrito() {
+  document.getElementById('carrito-drawer').classList.toggle('abierto');
+}
+
+// ── Pedir por WhatsApp ──────────────────────────────────────────────
+function pedirWhatsApp() {
+  if (!carrito.length) { mostrarToast('⚠ Añade productos primero'); return; }
+  const lineas = carrito.map(i =>
+    `• ${i.cantidad}x ${i.producto.nombre} (${i.producto.unidad}) → ${(i.producto.precio * i.cantidad).toFixed(2)} €`
+  ).join('%0A');
+  const total = carrito.reduce((s, i) => s + i.producto.precio * i.cantidad, 0);
+  const msg = `Hola Alejandro, quería hacer el siguiente pedido:%0A%0A${lineas}%0A%0A*Total estimado: ${total.toFixed(2)} €*%0A%0A¿Podrías confirmar disponibilidad y forma de pago? ¡Gracias!`;
+  window.open(`https://wa.me/34644366979?text=${msg}`, '_blank');
+}
+
+// ── Pedir por Email ─────────────────────────────────────────────────
+function pedirEmail() {
+  if (!carrito.length) { mostrarToast('⚠ Añade productos primero'); return; }
+  const lineas = carrito.map(i =>
+    `- ${i.cantidad}x ${i.producto.nombre} (${i.producto.unidad}): ${(i.producto.precio * i.cantidad).toFixed(2)} €`
+  ).join('\n');
+  const total = carrito.reduce((s, i) => s + i.producto.precio * i.cantidad, 0);
+  const asunto = encodeURIComponent('Pedido - Exclusivas La Casica');
+  const cuerpo = encodeURIComponent(
+    `Hola Alejandro,\n\nMe gustaría realizar el siguiente pedido:\n\n${lineas}\n\nTotal estimado: ${total.toFixed(2)} €\n\nPor favor, confírmame disponibilidad y forma de pago.\n\nGracias.`
+  );
+  window.open(`mailto:Lacasicadeprimitivo@gmail.com?subject=${asunto}&body=${cuerpo}`);
+}
+
+// ── Toast ───────────────────────────────────────────────────────────
+function mostrarToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(() => t.classList.remove('visible'), 2200);
+}
+
+// ── Init ────────────────────────────────────────────────────────────
+renderProductos();
+renderCarrito();
+</script>
+</body>
+</html>
