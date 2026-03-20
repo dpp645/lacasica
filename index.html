@@ -3,474 +3,783 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Exclusivas La Casica | Productos Gourmet</title>
+<title>La Casica · Productos Gourmet</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* ── Variables de color ── */
-  :root {
-    --verde:       #2d5a27;
-    --verde-claro: #4a7c3f;
-    --dorado:      #b8860b;
-    --dorado-claro:#d4a017;
-    --crema:       #faf8f3;
-    --crema-oscura:#f0ede4;
-    --texto:       #1a1a1a;
-    --texto-gris:  #555;
-    --borde:       #ddd8cc;
-    --blanco:      #ffffff;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--crema); color:var(--texto); }
+:root {
+  --negro:        #0a0a0a;
+  --negro-suave:  #111111;
+  --carbon:       #1a1a1a;
+  --carbon-medio: #242424;
+  --dorado:       #c9a84c;
+  --dorado-claro: #e0c06a;
+  --dorado-oscuro:#a07830;
+  --verde:        #2a4a1e;
+  --verde-medio:  #3a6429;
+  --crema:        #f5f0e8;
+  --crema-oscura: #ede6d6;
+  --blanco:       #ffffff;
+  --gris-texto:   #888;
+  --borde-oscuro: rgba(255,255,255,.08);
+  --borde-dorado: rgba(201,168,76,.3);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--negro);
+  color: var(--crema);
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* ── NAV ── */
-  nav {
-    background:var(--verde);
-    padding:0 2rem;
-    display:flex; align-items:center; justify-content:space-between;
-    position:sticky; top:0; z-index:100;
-    box-shadow:0 2px 8px rgba(0,0,0,.25);
-  }
-  .nav-logo { display:flex; align-items:center; gap:.75rem; text-decoration:none; padding:.75rem 0; }
-  .nav-logo-icon {
-    width:36px; height:36px; background:var(--dorado);
-    border-radius:50%; display:flex; align-items:center; justify-content:center;
-    font-size:18px; color:var(--blanco); font-weight:700;
-  }
-  .nav-logo span { color:var(--blanco); font-size:1.1rem; font-weight:600; letter-spacing:.5px; }
-  .nav-right { display:flex; align-items:center; gap:1.5rem; }
-  .nav-link { color:rgba(255,255,255,.85); text-decoration:none; font-size:.9rem; transition:color .2s; }
-  .nav-link:hover { color:var(--dorado-claro); }
-  #btn-carrito {
-    background:var(--dorado); color:var(--blanco);
-    border:none; border-radius:8px; padding:.5rem 1rem;
-    cursor:pointer; font-size:.9rem; font-weight:600;
-    display:flex; align-items:center; gap:.5rem;
-    transition:background .2s;
-  }
-  #btn-carrito:hover { background:var(--dorado-claro); }
-  #carrito-badge {
-    background:var(--blanco); color:var(--dorado);
-    border-radius:50%; width:20px; height:20px;
-    font-size:.75rem; font-weight:700;
-    display:flex; align-items:center; justify-content:center;
-  }
+/* ── TIPOGRAFÍA ── */
+.serif { font-family: 'Playfair Display', Georgia, serif; }
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 60%, #6a9d5e 100%);
-    color:var(--blanco);
-    padding:5rem 2rem 4rem;
-    text-align:center;
-    position:relative; overflow:hidden;
-  }
-  .hero::before {
-    content:''; position:absolute; inset:0;
-    background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    pointer-events:none;
-  }
-  .hero-badge {
-    display:inline-block; background:var(--dorado);
-    color:var(--blanco); font-size:.75rem; font-weight:600;
-    padding:.3rem .9rem; border-radius:20px; letter-spacing:1px;
-    text-transform:uppercase; margin-bottom:1.2rem;
-  }
-  .hero h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:700; margin-bottom:1rem; line-height:1.2; }
-  .hero p { font-size:1.1rem; opacity:.9; max-width:520px; margin:0 auto 2rem; line-height:1.7; }
-  .hero-btn {
-    display:inline-block; background:var(--dorado);
-    color:var(--blanco); text-decoration:none;
-    padding:.85rem 2.2rem; border-radius:8px;
-    font-weight:600; font-size:1rem;
-    transition:background .2s, transform .15s;
-  }
-  .hero-btn:hover { background:var(--dorado-claro); transform:translateY(-2px); }
-  .hero-stats {
-    display:flex; justify-content:center; gap:3rem;
-    margin-top:3rem; padding-top:2rem;
-    border-top:1px solid rgba(255,255,255,.2);
-  }
-  .hero-stat span:first-child { display:block; font-size:1.6rem; font-weight:700; color:var(--dorado-claro); }
-  .hero-stat span:last-child  { font-size:.8rem; opacity:.8; text-transform:uppercase; letter-spacing:.5px; }
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--negro); }
+::-webkit-scrollbar-thumb { background: var(--dorado-oscuro); border-radius: 3px; }
 
-  /* ── SECCIÓN CATÁLOGO ── */
-  .seccion { padding:4rem 2rem; max-width:1100px; margin:0 auto; }
-  .seccion-titulo {
-    text-align:center; margin-bottom:2.5rem;
-  }
-  .seccion-titulo h2 { font-size:1.8rem; color:var(--verde); margin-bottom:.5rem; }
-  .seccion-titulo p  { color:var(--texto-gris); }
-  .separador {
-    width:60px; height:3px;
-    background:var(--dorado); border-radius:2px;
-    margin:.8rem auto 0;
-  }
+/* ══════════════════════════════
+   NAV
+══════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px;
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borde-oscuro);
+  transition: all .3s;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: .9rem;
+  text-decoration: none;
+}
+.nav-logo-mark {
+  width: 38px; height: 38px;
+  border: 1.5px solid var(--dorado);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; color: var(--dorado); font-weight: 600;
+  letter-spacing: 1px;
+}
+.nav-logo-text { line-height: 1.2; }
+.nav-logo-text .t1 {
+  display: block; font-family: 'Playfair Display', serif;
+  font-size: .95rem; color: var(--blanco); letter-spacing: .5px;
+}
+.nav-logo-text .t2 {
+  display: block; font-size: .65rem; color: var(--dorado);
+  text-transform: uppercase; letter-spacing: 2px;
+}
+.nav-links { display: flex; align-items: center; gap: 2.5rem; }
+.nav-link {
+  color: rgba(255,255,255,.6); text-decoration: none;
+  font-size: .82rem; font-weight: 400; letter-spacing: 1.5px;
+  text-transform: uppercase; transition: color .2s;
+}
+.nav-link:hover { color: var(--dorado); }
+.nav-divider { width: 1px; height: 20px; background: var(--borde-oscuro); }
+#btn-carrito {
+  display: flex; align-items: center; gap: .6rem;
+  background: none; border: 1px solid var(--borde-dorado);
+  color: var(--dorado); padding: .5rem 1.1rem; cursor: pointer;
+  font-size: .78rem; font-weight: 500; letter-spacing: 1px;
+  text-transform: uppercase; transition: all .2s;
+}
+#btn-carrito:hover {
+  background: var(--dorado); color: var(--negro);
+}
+#carrito-badge {
+  background: var(--dorado); color: var(--negro);
+  border-radius: 50%; width: 18px; height: 18px;
+  font-size: .7rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+#btn-carrito:hover #carrito-badge {
+  background: var(--negro); color: var(--dorado);
+}
 
-  /* ── GRID DE PRODUCTOS ── */
-  .productos-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:1.5rem;
-  }
-  .producto-card {
-    background:var(--blanco); border-radius:12px;
-    border:1px solid var(--borde);
-    overflow:hidden; transition:transform .2s, box-shadow .2s;
-    display:flex; flex-direction:column;
-  }
-  .producto-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,.1); }
-  .producto-img {
-    height:180px; background:var(--crema-oscura);
-    display:flex; align-items:center; justify-content:center;
-    font-size:3.5rem; position:relative;
-  }
-  .producto-badge-cat {
-    position:absolute; top:10px; left:10px;
-    background:var(--verde); color:var(--blanco);
-    font-size:.7rem; font-weight:600; padding:.25rem .6rem;
-    border-radius:20px; text-transform:uppercase; letter-spacing:.5px;
-  }
-  .producto-body { padding:1.2rem; flex:1; display:flex; flex-direction:column; gap:.5rem; }
-  .producto-nombre { font-size:1rem; font-weight:600; color:var(--texto); line-height:1.3; }
-  .producto-marca  { font-size:.8rem; color:var(--texto-gris); }
-  .producto-desc   { font-size:.85rem; color:var(--texto-gris); line-height:1.5; flex:1; }
-  .producto-pie    { display:flex; align-items:center; justify-content:space-between; margin-top:.8rem; }
-  .producto-precio { font-size:1.3rem; font-weight:700; color:var(--dorado); }
-  .producto-unidad { font-size:.72rem; color:var(--texto-gris); }
-  .producto-precio-caja { font-size:.75rem; color:var(--verde); font-weight:500; margin-top:.1rem; }
-  .btn-add {
-    background:var(--verde); color:var(--blanco);
-    border:none; border-radius:8px; padding:.5rem 1rem;
-    cursor:pointer; font-size:.85rem; font-weight:600;
-    transition:background .2s;
-    white-space:nowrap;
-  }
-  .btn-add:hover { background:var(--verde-claro); }
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 5rem;
+  position: relative; overflow: hidden;
+  background: var(--negro-suave);
+}
+/* Textura de fondo sutil */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 60%, rgba(42,74,30,.25) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 80% 20%, rgba(201,168,76,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-linea {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin-bottom: 2rem; justify-content: center;
+}
+.hero-linea-barra { width: 40px; height: 1px; background: var(--dorado); }
+.hero-linea span {
+  font-size: .7rem; color: var(--dorado); letter-spacing: 3px;
+  text-transform: uppercase; font-weight: 500;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400; line-height: 1.05;
+  color: var(--blanco); margin-bottom: 1rem;
+}
+.hero h1 em {
+  font-style: italic; color: var(--dorado);
+}
+.hero-sub {
+  font-size: .9rem; color: rgba(255,255,255,.5);
+  letter-spacing: .5px; margin-bottom: 3rem;
+  font-weight: 300;
+}
+.hero-cta-grupo {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 5rem;
+}
+.btn-primario {
+  background: var(--dorado); color: var(--negro);
+  padding: .9rem 2.4rem; text-decoration: none;
+  font-size: .8rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; transition: all .2s; border: none; cursor: pointer;
+  display: inline-block;
+}
+.btn-primario:hover { background: var(--dorado-claro); transform: translateY(-2px); }
+.btn-secundario {
+  background: transparent; color: var(--crema);
+  padding: .9rem 2.4rem; text-decoration: none;
+  font-size: .8rem; font-weight: 400; letter-spacing: 1.5px;
+  text-transform: uppercase; border: 1px solid rgba(255,255,255,.2);
+  transition: all .2s; display: inline-block;
+}
+.btn-secundario:hover { border-color: var(--dorado); color: var(--dorado); }
+.hero-stats {
+  display: flex; gap: 5rem; justify-content: center; flex-wrap: wrap;
+  padding-top: 3rem; border-top: 1px solid var(--borde-oscuro);
+  width: 100%; max-width: 700px;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num {
+  display: block; font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: var(--dorado); margin-bottom: .2rem;
+}
+.hero-stat .lbl {
+  font-size: .65rem; color: rgba(255,255,255,.4);
+  text-transform: uppercase; letter-spacing: 2px;
+}
 
-  /* ── SECCIÓN NOSOTROS ── */
-  .nosotros {
-    background:var(--verde);
-    color:var(--blanco);
-    padding:4rem 2rem;
-    text-align:center;
-  }
-  .nosotros h2 { font-size:1.8rem; margin-bottom:1rem; }
-  .nosotros p  { max-width:600px; margin:0 auto; opacity:.9; line-height:1.8; }
-  .nosotros-grid {
-    display:flex; justify-content:center; gap:3rem;
-    flex-wrap:wrap; margin-top:3rem;
-  }
-  .nosotros-item { text-align:center; }
-  .nosotros-item .icono {
-    width:56px; height:56px; background:rgba(255,255,255,.15);
-    border-radius:50%; margin:0 auto .8rem;
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.5rem;
-  }
-  .nosotros-item h3 { font-size:.95rem; font-weight:600; margin-bottom:.3rem; }
-  .nosotros-item p  { font-size:.82rem; opacity:.8; max-width:160px; }
+/* ══════════════════════════════
+   BANDA DORADA
+══════════════════════════════ */
+.banda {
+  background: var(--dorado);
+  padding: .9rem 2rem;
+  display: flex; align-items: center; justify-content: center; gap: 3rem;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.banda-item {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .72rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--negro);
+}
 
-  /* ── CONTACTO ── */
-  .contacto-bar {
-    background:var(--crema-oscura);
-    border-top:1px solid var(--borde);
-    padding:2rem;
-    display:flex; justify-content:center; gap:3rem; flex-wrap:wrap;
-  }
-  .contacto-item { display:flex; align-items:center; gap:.7rem; }
-  .contacto-item .ico { font-size:1.2rem; }
-  .contacto-item a { color:var(--verde); font-weight:600; text-decoration:none; }
-  .contacto-item a:hover { color:var(--dorado); }
-  .contacto-item span { color:var(--texto-gris); font-size:.9rem; }
+/* ══════════════════════════════
+   SECCIÓN GENÉRICA
+══════════════════════════════ */
+.seccion { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+.sec-header { margin-bottom: 4rem; }
+.sec-header.centrado { text-align: center; }
+.sec-eyebrow {
+  font-size: .65rem; color: var(--dorado); letter-spacing: 3px;
+  text-transform: uppercase; font-weight: 500; margin-bottom: 1rem;
+  display: block;
+}
+.sec-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400; color: var(--blanco); line-height: 1.2;
+}
+.sec-titulo em { font-style: italic; color: var(--dorado); }
+.sec-linea {
+  width: 48px; height: 2px; background: var(--dorado);
+  margin: 1.5rem auto 0;
+}
+.sec-linea.izq { margin-left: 0; }
 
-  /* ── FOOTER ── */
-  footer {
-    background:var(--verde);
-    color:rgba(255,255,255,.7);
-    text-align:center; padding:1.5rem;
-    font-size:.85rem;
-  }
-  footer strong { color:var(--dorado-claro); }
+/* ══════════════════════════════
+   GRID PRODUCTOS
+══════════════════════════════ */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1px;
+  background: var(--borde-oscuro);
+  border: 1px solid var(--borde-oscuro);
+}
+.producto-card {
+  background: var(--carbon);
+  padding: 2.5rem 2rem;
+  display: flex; flex-direction: column; gap: .8rem;
+  cursor: pointer; transition: background .25s;
+  position: relative; overflow: hidden;
+}
+.producto-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--dorado);
+  transform: scaleX(0); transition: transform .3s;
+  transform-origin: left;
+}
+.producto-card:hover { background: var(--carbon-medio); }
+.producto-card:hover::after { transform: scaleX(1); }
+.producto-icono { font-size: 2.5rem; margin-bottom: .5rem; }
+.producto-cat {
+  font-size: .62rem; color: var(--dorado); letter-spacing: 2.5px;
+  text-transform: uppercase; font-weight: 500;
+}
+.producto-nombre {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem; color: var(--blanco); line-height: 1.3;
+}
+.producto-marca { font-size: .78rem; color: var(--gris-texto); font-weight: 300; }
+.producto-desc { font-size: .83rem; color: rgba(255,255,255,.55); line-height: 1.7; flex: 1; }
+.producto-separador { width: 30px; height: 1px; background: var(--borde-dorado); margin: .4rem 0; }
+.producto-precio-bloque { display: flex; align-items: flex-end; justify-content: space-between; }
+.producto-precio { font-size: 1.5rem; font-weight: 300; color: var(--dorado); }
+.producto-precio sup { font-size: .8rem; }
+.producto-unidad-txt { font-size: .72rem; color: var(--gris-texto); margin-bottom: .2rem; }
+.producto-caja-txt { font-size: .72rem; color: rgba(201,168,76,.6); }
+.btn-ver {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .72rem; color: var(--dorado); letter-spacing: 1.5px;
+  text-transform: uppercase; background: none; border: none;
+  cursor: pointer; padding: 0; margin-top: .8rem;
+  font-family: 'Inter', sans-serif;
+  transition: gap .2s;
+}
+.btn-ver:hover { gap: .9rem; }
+.btn-ver-flecha { font-size: .9rem; }
 
-  /* ── MODAL PRODUCTO ── */
-  .overlay {
-    display:none; position:fixed; inset:0;
-    background:rgba(0,0,0,.55); z-index:200;
-    align-items:center; justify-content:center; padding:1rem;
-  }
-  .overlay.activo { display:flex; }
-  .modal {
-    background:var(--blanco); border-radius:16px;
-    max-width:480px; width:100%; padding:2rem;
-    position:relative; max-height:90vh; overflow-y:auto;
-  }
-  .modal-cerrar {
-    position:absolute; top:1rem; right:1rem;
-    background:none; border:none; font-size:1.4rem;
-    cursor:pointer; color:var(--texto-gris);
-    line-height:1;
-  }
-  .modal-icono { font-size:4rem; text-align:center; margin-bottom:1rem; }
-  .modal h2 { font-size:1.3rem; color:var(--verde); margin-bottom:.3rem; }
-  .modal .modal-marca { font-size:.85rem; color:var(--texto-gris); margin-bottom:1rem; }
-  .modal-desc { font-size:.9rem; color:var(--texto-gris); line-height:1.7; margin-bottom:1.2rem; }
-  .modal-features { list-style:none; margin-bottom:1.2rem; }
-  .modal-features li {
-    font-size:.88rem; padding:.35rem 0;
-    border-bottom:1px solid var(--crema-oscura);
-    display:flex; gap:.6rem;
-  }
-  .modal-features li::before { content:'✓'; color:var(--verde); font-weight:700; }
-  .modal-precio-bloque { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem; }
-  .modal-precio { font-size:1.8rem; font-weight:700; color:var(--dorado); }
-  .modal-info-caja { font-size:.8rem; color:var(--verde); background:var(--crema-oscura); padding:.4rem .8rem; border-radius:6px; }
-  .modal-cantidad { display:flex; align-items:center; gap:.8rem; margin-bottom:1.2rem; }
-  .modal-cantidad label { font-size:.9rem; font-weight:600; }
-  .modal-cantidad input {
-    width:70px; padding:.4rem; border:1px solid var(--borde);
-    border-radius:6px; text-align:center; font-size:1rem;
-  }
-  .modal-cantidad-info { font-size:.8rem; color:var(--texto-gris); }
-  .btn-modal-add {
-    width:100%; background:var(--verde); color:var(--blanco);
-    border:none; border-radius:10px; padding:1rem;
-    font-size:1rem; font-weight:600; cursor:pointer;
-    transition:background .2s;
-  }
-  .btn-modal-add:hover { background:var(--verde-claro); }
+/* ══════════════════════════════
+   SECCIÓN NOSOTROS
+══════════════════════════════ */
+.nosotros-wrap {
+  background: var(--carbon);
+  border-top: 1px solid var(--borde-oscuro);
+  border-bottom: 1px solid var(--borde-oscuro);
+  padding: 6rem 2rem;
+}
+.nosotros-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center;
+}
+.nosotros-texto .sec-eyebrow { display: block; margin-bottom: 1rem; }
+.nosotros-texto p {
+  font-size: .92rem; color: rgba(255,255,255,.6);
+  line-height: 1.9; margin-top: 1.5rem; font-weight: 300;
+}
+.nosotros-valores {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px;
+  background: var(--borde-oscuro);
+  border: 1px solid var(--borde-oscuro);
+}
+.valor-item {
+  background: var(--negro-suave);
+  padding: 1.8rem 1.5rem;
+}
+.valor-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: var(--dorado); opacity: .4;
+  margin-bottom: .8rem; display: block;
+}
+.valor-titulo {
+  font-size: .85rem; font-weight: 600; color: var(--blanco);
+  margin-bottom: .4rem; letter-spacing: .3px;
+}
+.valor-desc { font-size: .78rem; color: var(--gris-texto); line-height: 1.6; }
 
-  /* ── DRAWER CARRITO ── */
-  .carrito-drawer {
-    position:fixed; top:0; right:0; bottom:0; width:360px;
-    background:var(--blanco); box-shadow:-4px 0 24px rgba(0,0,0,.15);
-    z-index:300; transform:translateX(100%);
-    transition:transform .3s ease; display:flex; flex-direction:column;
-  }
-  .carrito-drawer.abierto { transform:translateX(0); }
-  .carrito-header {
-    background:var(--verde); color:var(--blanco);
-    padding:1.2rem 1.5rem;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .carrito-header h3 { font-size:1.1rem; }
-  .btn-cerrar-carrito { background:none; border:none; color:var(--blanco); font-size:1.4rem; cursor:pointer; }
-  .carrito-items { flex:1; overflow-y:auto; padding:1rem; }
-  .carrito-vacio { text-align:center; color:var(--texto-gris); margin-top:3rem; font-size:.9rem; }
-  .carrito-vacio .ico-vacio { font-size:3rem; margin-bottom:1rem; display:block; }
-  .item-carrito {
-    display:flex; gap:.8rem; padding:.8rem 0;
-    border-bottom:1px solid var(--crema-oscura);
-    align-items:center;
-  }
-  .item-carrito .ico { font-size:1.8rem; min-width:40px; text-align:center; }
-  .item-info { flex:1; }
-  .item-info .nombre { font-size:.88rem; font-weight:600; }
-  .item-info .precio-unit { font-size:.78rem; color:var(--texto-gris); }
-  .item-controles { display:flex; align-items:center; gap:.4rem; }
-  .btn-qty {
-    width:26px; height:26px; border:1px solid var(--borde);
-    background:var(--crema); border-radius:6px;
-    cursor:pointer; font-size:.9rem; font-weight:700;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .btn-qty:hover { background:var(--crema-oscura); }
-  .qty-num { font-size:.9rem; font-weight:600; min-width:20px; text-align:center; }
-  .item-total { font-size:.9rem; font-weight:700; color:var(--dorado); min-width:50px; text-align:right; }
-  .btn-eliminar { background:none; border:none; cursor:pointer; font-size:.9rem; color:#ccc; padding:.2rem; }
-  .btn-eliminar:hover { color:#e74c3c; }
-  .carrito-footer { padding:1.2rem; border-top:1px solid var(--borde); }
-  .carrito-total-linea { display:flex; justify-content:space-between; margin-bottom:.5rem; font-size:.9rem; color:var(--texto-gris); }
-  .carrito-total-final { display:flex; justify-content:space-between; font-size:1.2rem; font-weight:700; color:var(--texto); margin-bottom:1rem; }
-  .btn-pedir-wa {
-    width:100%; background:#25d366; color:var(--blanco);
-    border:none; border-radius:10px; padding:1rem;
-    font-size:1rem; font-weight:600; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; gap:.6rem;
-    transition:background .2s; margin-bottom:.6rem;
-  }
-  .btn-pedir-wa:hover { background:#1ebe5d; }
-  .btn-pedir-email {
-    width:100%; background:var(--verde); color:var(--blanco);
-    border:none; border-radius:10px; padding:.8rem;
-    font-size:.9rem; font-weight:600; cursor:pointer;
-    transition:background .2s;
-  }
-  .btn-pedir-email:hover { background:var(--verde-claro); }
-  .carrito-nota { font-size:.75rem; color:var(--texto-gris); text-align:center; margin-top:.6rem; }
+/* ══════════════════════════════
+   CONTACTO
+══════════════════════════════ */
+.contacto-sec {
+  background: var(--negro-suave);
+  padding: 5rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--borde-oscuro);
+}
+.contacto-inner { max-width: 800px; margin: 0 auto; }
+.contacto-items {
+  display: flex; justify-content: center; gap: 4rem;
+  flex-wrap: wrap; margin-top: 3rem;
+}
+.contacto-item { }
+.contacto-item .ci-label {
+  font-size: .62rem; color: var(--dorado); letter-spacing: 2.5px;
+  text-transform: uppercase; margin-bottom: .5rem; display: block;
+}
+.contacto-item a, .contacto-item span {
+  font-size: .92rem; color: rgba(255,255,255,.75);
+  text-decoration: none; font-weight: 300;
+  transition: color .2s;
+}
+.contacto-item a:hover { color: var(--dorado); }
+.contacto-cta { margin-top: 3rem; }
 
-  /* ── NOTIFICACIÓN TOAST ── */
-  .toast {
-    position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(80px);
-    background:var(--verde); color:var(--blanco);
-    padding:.8rem 1.6rem; border-radius:30px;
-    font-size:.9rem; font-weight:600;
-    z-index:500; transition:transform .3s ease;
-    white-space:nowrap;
-  }
-  .toast.visible { transform:translateX(-50%) translateY(0); }
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  background: var(--negro);
+  border-top: 1px solid var(--borde-oscuro);
+  padding: 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: .9rem; color: rgba(255,255,255,.4);
+}
+.footer-logo strong { color: var(--dorado); }
+.footer-copy { font-size: .72rem; color: rgba(255,255,255,.25); letter-spacing: .5px; }
 
-  /* ── RESPONSIVE ── */
-  @media(max-width:600px) {
-    .hero-stats { gap:1.5rem; }
-    .carrito-drawer { width:100%; }
-    .nosotros-grid { gap:2rem; }
-    nav { padding:0 1rem; }
-    .nav-logo span { display:none; }
-  }
+/* ══════════════════════════════
+   MODAL
+══════════════════════════════ */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.8); z-index: 200;
+  align-items: center; justify-content: center;
+  padding: 1rem; backdrop-filter: blur(4px);
+}
+.overlay.activo { display: flex; }
+.modal {
+  background: var(--carbon); max-width: 520px; width: 100%;
+  border: 1px solid var(--borde-oscuro);
+  position: relative; max-height: 90vh; overflow-y: auto;
+}
+.modal-top {
+  background: var(--negro-suave);
+  padding: 3rem 2.5rem 2rem;
+  border-bottom: 1px solid var(--borde-oscuro);
+  position: relative;
+}
+.modal-cerrar {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  background: none; border: 1px solid var(--borde-oscuro);
+  color: var(--gris-texto); width: 32px; height: 32px;
+  cursor: pointer; font-size: .9rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.modal-cerrar:hover { border-color: var(--dorado); color: var(--dorado); }
+.modal-icono { font-size: 3rem; margin-bottom: 1.2rem; }
+.modal-cat {
+  font-size: .62rem; color: var(--dorado); letter-spacing: 2.5px;
+  text-transform: uppercase; margin-bottom: .6rem; display: block;
+}
+.modal h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; color: var(--blanco); font-weight: 400;
+  margin-bottom: .3rem;
+}
+.modal-marca { font-size: .8rem; color: var(--gris-texto); font-weight: 300; }
+.modal-body { padding: 2rem 2.5rem; }
+.modal-desc {
+  font-size: .88rem; color: rgba(255,255,255,.6);
+  line-height: 1.8; margin-bottom: 1.5rem;
+}
+.modal-features { list-style: none; margin-bottom: 1.8rem; }
+.modal-features li {
+  font-size: .83rem; color: rgba(255,255,255,.65);
+  padding: .6rem 0; border-bottom: 1px solid var(--borde-oscuro);
+  display: flex; gap: .8rem; align-items: flex-start;
+}
+.modal-features li::before {
+  content: '—'; color: var(--dorado); font-weight: 400; flex-shrink: 0;
+}
+.modal-precio-bloque {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem; padding: 1.2rem;
+  background: var(--negro-suave); border: 1px solid var(--borde-dorado);
+}
+.modal-precio {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; color: var(--dorado); font-weight: 400;
+}
+.modal-precio-info { text-align: right; }
+.modal-precio-info .p1 { font-size: .75rem; color: var(--gris-texto); }
+.modal-precio-info .p2 {
+  font-size: .78rem; color: rgba(201,168,76,.7); margin-top: .2rem;
+}
+.modal-cantidad {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+}
+.modal-cantidad label {
+  font-size: .72rem; color: var(--dorado); letter-spacing: 2px;
+  text-transform: uppercase; flex-shrink: 0;
+}
+.modal-cantidad input {
+  width: 70px; background: var(--negro-suave);
+  border: 1px solid var(--borde-oscuro); color: var(--blanco);
+  padding: .5rem; text-align: center; font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+.modal-cantidad input:focus {
+  outline: none; border-color: var(--dorado);
+}
+.modal-total-txt {
+  font-size: .85rem; color: rgba(255,255,255,.5);
+}
+.modal-total-txt strong { color: var(--dorado); }
+.btn-modal-add {
+  width: 100%; background: var(--dorado); color: var(--negro);
+  border: none; padding: 1.1rem;
+  font-size: .8rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; cursor: pointer;
+  transition: background .2s;
+  font-family: 'Inter', sans-serif;
+}
+.btn-modal-add:hover { background: var(--dorado-claro); }
+
+/* ══════════════════════════════
+   DRAWER CARRITO
+══════════════════════════════ */
+.carrito-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 380px;
+  background: var(--carbon);
+  border-left: 1px solid var(--borde-oscuro);
+  z-index: 300; transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+}
+.carrito-drawer.abierto { transform: translateX(0); }
+.carrito-header {
+  padding: 1.5rem 1.8rem;
+  border-bottom: 1px solid var(--borde-oscuro);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.carrito-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; color: var(--blanco); font-weight: 400;
+}
+.carrito-header .sub {
+  font-size: .68rem; color: var(--dorado); letter-spacing: 2px;
+  text-transform: uppercase; display: block; margin-top: .2rem;
+}
+.btn-cerrar-carrito {
+  background: none; border: 1px solid var(--borde-oscuro);
+  color: var(--gris-texto); width: 32px; height: 32px;
+  cursor: pointer; font-size: .85rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.btn-cerrar-carrito:hover { border-color: var(--dorado); color: var(--dorado); }
+.carrito-items { flex: 1; overflow-y: auto; padding: 1rem 1.8rem; }
+.carrito-vacio {
+  text-align: center; color: var(--gris-texto);
+  margin-top: 4rem; font-size: .85rem; line-height: 2;
+}
+.carrito-vacio .ico-vacio { font-size: 2.5rem; display: block; margin-bottom: 1rem; opacity: .3; }
+.item-carrito {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--borde-oscuro);
+  display: flex; gap: .8rem; align-items: center;
+}
+.item-ico { font-size: 1.6rem; min-width: 36px; text-align: center; }
+.item-info { flex: 1; }
+.item-nombre {
+  font-size: .85rem; color: var(--blanco); font-weight: 500; margin-bottom: .2rem;
+}
+.item-precio-unit { font-size: .73rem; color: var(--gris-texto); }
+.item-controles { display: flex; align-items: center; gap: .4rem; }
+.btn-qty {
+  width: 24px; height: 24px;
+  background: var(--negro-suave); border: 1px solid var(--borde-oscuro);
+  color: var(--crema); cursor: pointer; font-size: .85rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s;
+}
+.btn-qty:hover { border-color: var(--dorado); color: var(--dorado); }
+.qty-num { font-size: .85rem; min-width: 22px; text-align: center; color: var(--blanco); }
+.item-total { font-size: .88rem; color: var(--dorado); min-width: 55px; text-align: right; }
+.btn-eliminar {
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,.2); font-size: .85rem; padding: .2rem;
+  transition: color .2s;
+}
+.btn-eliminar:hover { color: #e74c3c; }
+.carrito-footer {
+  padding: 1.5rem 1.8rem;
+  border-top: 1px solid var(--borde-oscuro);
+  background: var(--negro-suave);
+}
+.carrito-total-fila {
+  display: flex; justify-content: space-between;
+  font-size: .8rem; color: var(--gris-texto); margin-bottom: .5rem;
+}
+.carrito-total-final {
+  display: flex; justify-content: space-between;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; color: var(--blanco); margin-bottom: 1.5rem;
+  padding-top: .8rem; border-top: 1px solid var(--borde-oscuro);
+}
+.carrito-total-final span:last-child { color: var(--dorado); }
+.btn-wa {
+  width: 100%; background: #25d366; color: var(--blanco);
+  border: none; padding: 1rem;
+  font-size: .78rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; cursor: pointer; margin-bottom: .7rem;
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  transition: background .2s; font-family: 'Inter', sans-serif;
+}
+.btn-wa:hover { background: #1ebe5d; }
+.btn-email {
+  width: 100%; background: transparent; color: var(--crema);
+  border: 1px solid var(--borde-oscuro); padding: .85rem;
+  font-size: .78rem; letter-spacing: 1.5px;
+  text-transform: uppercase; cursor: pointer;
+  transition: all .2s; font-family: 'Inter', sans-serif;
+}
+.btn-email:hover { border-color: var(--dorado); color: var(--dorado); }
+.carrito-nota {
+  font-size: .7rem; color: rgba(255,255,255,.25);
+  text-align: center; margin-top: .8rem; line-height: 1.6;
+}
+
+/* ══════════════════════════════
+   TOAST
+══════════════════════════════ */
+.toast {
+  position: fixed; bottom: 2rem; left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: var(--dorado); color: var(--negro);
+  padding: .7rem 1.8rem; font-size: .78rem;
+  font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  z-index: 500; transition: transform .3s ease;
+  white-space: nowrap; pointer-events: none;
+}
+.toast.visible { transform: translateX(-50%) translateY(0); }
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media(max-width:768px) {
+  nav { padding: 0 1.2rem; }
+  .nav-links { display: none; }
+  .nosotros-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .carrito-drawer { width: 100%; }
+  .hero-stats { gap: 2.5rem; }
+  footer { flex-direction: column; text-align: center; }
+}
 </style>
 </head>
 <body>
 
-<!-- ════ NAVBAR ════ -->
+<!-- ════ NAV ════ -->
 <nav>
   <a class="nav-logo" href="#">
-    <div class="nav-logo-icon">LC</div>
-    <span>Exclusivas La Casica</span>
+    <div class="nav-logo-mark">LC</div>
+    <div class="nav-logo-text">
+      <span class="t1">La Casica</span>
+      <span class="t2">Exclusivas Gourmet</span>
+    </div>
   </a>
-  <div class="nav-right">
+  <div class="nav-links">
     <a href="#catalogo" class="nav-link">Catálogo</a>
     <a href="#nosotros" class="nav-link">Nosotros</a>
     <a href="#contacto" class="nav-link">Contacto</a>
+    <div class="nav-divider"></div>
     <button id="btn-carrito" onclick="toggleCarrito()">
-      🛒 Carrito
+      ✦ Pedido
       <span id="carrito-badge">0</span>
     </button>
   </div>
+  <!-- Botón carrito móvil -->
+  <button id="btn-carrito" onclick="toggleCarrito()" style="display:none" class="mobile-cart-btn">🛒 <span id="carrito-badge-m">0</span></button>
 </nav>
 
 <!-- ════ HERO ════ -->
 <section class="hero">
-  <span class="hero-badge">🫒 Productos Gourmet · Petrer, Alicante</span>
-  <h1>Sabor auténtico,<br>calidad premium</h1>
-  <p>Distribuimos los mejores productos gourmet para hostelería y particulares. Del campo a tu mesa, con la confianza de Exclusivas La Casica.</p>
-  <a href="#catalogo" class="hero-btn">Ver catálogo</a>
+  <div class="hero-linea">
+    <div class="hero-linea-barra"></div>
+    <span>Petrer · Alicante · Desde 2020</span>
+    <div class="hero-linea-barra"></div>
+  </div>
+  <h1 class="serif">
+    Del campo<br>a tu <em>mesa</em>
+  </h1>
+  <p class="hero-sub">Distribución exclusiva de productos gourmet para hostelería y particulares</p>
+  <div class="hero-cta-grupo">
+    <a href="#catalogo" class="btn-primario">Descubrir catálogo</a>
+    <a href="#contacto" class="btn-secundario">Hablar con Alejandro</a>
+  </div>
   <div class="hero-stats">
     <div class="hero-stat">
-      <span>100%</span><span>Natural</span>
+      <span class="num serif">100%</span>
+      <span class="lbl">Natural</span>
     </div>
     <div class="hero-stat">
-      <span>3+</span><span>Productos</span>
+      <span class="num serif">AOVE</span>
+      <span class="lbl">Cosecha propia</span>
     </div>
     <div class="hero-stat">
-      <span>HORECA</span><span>Especialistas</span>
+      <span class="num serif">HORECA</span>
+      <span class="lbl">Especialistas</span>
     </div>
   </div>
 </section>
+
+<!-- ════ BANDA ════ -->
+<div class="banda">
+  <div class="banda-item">✦ Envío a toda España</div>
+  <div class="banda-item">✦ Formato hostelería</div>
+  <div class="banda-item">✦ Trato directo y personal</div>
+  <div class="banda-item">✦ Productos de origen certificado</div>
+</div>
 
 <!-- ════ CATÁLOGO ════ -->
-<section class="seccion" id="catalogo">
-  <div class="seccion-titulo">
-    <h2>Nuestro Catálogo</h2>
-    <p>Selección de productos de máxima calidad para hostelería y hogar</p>
-    <div class="separador"></div>
+<div class="seccion" id="catalogo">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Nuestros productos</span>
+    <h2 class="sec-titulo serif">Una selección <em>cuidada</em></h2>
+    <div class="sec-linea izq"></div>
   </div>
-  <div class="productos-grid" id="productos-grid">
-    <!-- Las tarjetas se generan por JavaScript -->
-  </div>
-</section>
+  <div class="productos-grid" id="productos-grid"></div>
+</div>
 
 <!-- ════ NOSOTROS ════ -->
-<section class="nosotros" id="nosotros">
-  <h2>¿Por qué Exclusivas La Casica?</h2>
-  <p>Somos una empresa familiar de Petrer (Alicante) comprometida con ofrecer productos de la más alta calidad, directamente del productor a tu negocio o mesa.</p>
-  <div class="nosotros-grid">
-    <div class="nosotros-item">
-      <div class="icono">🫒</div>
-      <h3>Origen garantizado</h3>
-      <p>Productos de procedencia certificada y trazable</p>
+<div class="nosotros-wrap" id="nosotros">
+  <div class="nosotros-inner">
+    <div class="nosotros-texto">
+      <span class="sec-eyebrow">Quiénes somos</span>
+      <h2 class="sec-titulo serif">Una empresa <em>familiar</em><br>con valores</h2>
+      <p>Exclusivas La Casica nace en Petrer, Alicante, con una misión clara: acercar los mejores productos gourmet directamente del productor al restaurante o al hogar, sin intermediarios innecesarios.</p>
+      <p>Alejandro selecciona personalmente cada producto que distribuimos, garantizando que lo que llega a tu cocina cumple con los estándares más exigentes de sabor, calidad y origen.</p>
     </div>
-    <div class="nosotros-item">
-      <div class="icono">📦</div>
-      <h3>Formato hostelería</h3>
-      <p>Cajas completas diseñadas para profesionales</p>
-    </div>
-    <div class="nosotros-item">
-      <div class="icono">💬</div>
-      <h3>Trato directo</h3>
-      <p>Pedidos por WhatsApp con atención personalizada</p>
-    </div>
-    <div class="nosotros-item">
-      <div class="icono">✅</div>
-      <h3>Calidad constante</h3>
-      <p>Seleccionamos cada producto con rigor</p>
+    <div class="nosotros-valores">
+      <div class="valor-item">
+        <span class="valor-num serif">01</span>
+        <div class="valor-titulo">Origen garantizado</div>
+        <div class="valor-desc">Productos de procedencia trazable, de productores de confianza.</div>
+      </div>
+      <div class="valor-item">
+        <span class="valor-num serif">02</span>
+        <div class="valor-titulo">Formato profesional</div>
+        <div class="valor-desc">Cajas completas pensadas para reducir costes en hostelería.</div>
+      </div>
+      <div class="valor-item">
+        <span class="valor-num serif">03</span>
+        <div class="valor-titulo">Trato directo</div>
+        <div class="valor-desc">Hablas con Alejandro, no con un call center. Siempre.</div>
+      </div>
+      <div class="valor-item">
+        <span class="valor-num serif">04</span>
+        <div class="valor-titulo">Calidad constante</div>
+        <div class="valor-desc">Cada lote revisado antes de llegar a tu puerta.</div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ════ CONTACTO ════ -->
-<div class="contacto-bar" id="contacto">
-  <div class="contacto-item">
-    <span class="ico">📞</span>
-    <div>
-      <div style="font-size:.75rem;color:var(--texto-gris);">Teléfono / WhatsApp</div>
-      <a href="tel:+34644366979">644 36 69 79 · Alejandro</a>
+<div class="contacto-sec" id="contacto">
+  <div class="contacto-inner">
+    <span class="sec-eyebrow">Contacto</span>
+    <h2 class="sec-titulo serif">Hablemos de tu <em>pedido</em></h2>
+    <div class="sec-linea" style="margin-top:1.2rem;"></div>
+    <div class="contacto-items">
+      <div class="contacto-item">
+        <span class="ci-label">Teléfono · WhatsApp</span>
+        <a href="tel:+34644366979">644 36 69 79 · Alejandro</a>
+      </div>
+      <div class="contacto-item">
+        <span class="ci-label">Correo electrónico</span>
+        <a href="mailto:Lacasicadeprimitivo@gmail.com">Lacasicadeprimitivo@gmail.com</a>
+      </div>
+      <div class="contacto-item">
+        <span class="ci-label">Ubicación</span>
+        <span>Petrer, Alicante 03610</span>
+      </div>
     </div>
-  </div>
-  <div class="contacto-item">
-    <span class="ico">✉️</span>
-    <div>
-      <div style="font-size:.75rem;color:var(--texto-gris);">Correo electrónico</div>
-      <a href="mailto:Lacasicadeprimitivo@gmail.com">Lacasicadeprimitivo@gmail.com</a>
-    </div>
-  </div>
-  <div class="contacto-item">
-    <span class="ico">📍</span>
-    <div>
-      <div style="font-size:.75rem;color:var(--texto-gris);">Ubicación</div>
-      <span>Petrer, Alicante 03610</span>
+    <div class="contacto-cta">
+      <a href="https://wa.me/34644366979?text=Hola%20Alejandro%2C%20me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20vuestros%20productos." class="btn-primario" target="_blank">💬 Escribir por WhatsApp</a>
     </div>
   </div>
 </div>
 
 <!-- ════ FOOTER ════ -->
 <footer>
-  <p>© 2025 <strong>Exclusivas La Casica</strong> · Petrer, Alicante · Todos los derechos reservados</p>
+  <div class="footer-logo">
+    <strong>La Casica</strong> · Exclusivas Gourmet
+  </div>
+  <div class="footer-copy">© 2025 Exclusivas La Casica · Petrer, Alicante · Todos los derechos reservados</div>
 </footer>
 
-<!-- ════ MODAL PRODUCTO ════ -->
+<!-- ════ MODAL ════ -->
 <div class="overlay" id="overlay" onclick="cerrarModal(event)">
   <div class="modal" id="modal">
-    <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
-    <div class="modal-icono" id="modal-icono"></div>
-    <h2 id="modal-nombre"></h2>
-    <div class="modal-marca" id="modal-marca"></div>
-    <p class="modal-desc" id="modal-desc"></p>
-    <ul class="modal-features" id="modal-features"></ul>
-    <div class="modal-precio-bloque">
-      <div>
-        <div class="modal-precio" id="modal-precio"></div>
-        <div class="producto-unidad" id="modal-unidad"></div>
+    <div class="modal-top">
+      <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
+      <div class="modal-icono" id="modal-icono"></div>
+      <span class="modal-cat" id="modal-cat"></span>
+      <h2 id="modal-nombre"></h2>
+      <div class="modal-marca" id="modal-marca"></div>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc" id="modal-desc"></p>
+      <ul class="modal-features" id="modal-features"></ul>
+      <div class="modal-precio-bloque">
+        <div class="modal-precio serif" id="modal-precio"></div>
+        <div class="modal-precio-info">
+          <div class="p1" id="modal-unidad"></div>
+          <div class="p2" id="modal-caja"></div>
+        </div>
       </div>
-      <div class="modal-info-caja" id="modal-caja"></div>
+      <div class="modal-cantidad">
+        <label>Cantidad</label>
+        <input type="number" id="modal-qty" value="1" min="1" max="99">
+        <span class="modal-total-txt" id="modal-qty-info"></span>
+      </div>
+      <button class="btn-modal-add" onclick="addDesdeModal()">Añadir al pedido →</button>
     </div>
-    <div class="modal-cantidad">
-      <label>Cantidad:</label>
-      <input type="number" id="modal-qty" value="1" min="1" max="99">
-      <span class="modal-cantidad-info" id="modal-qty-info"></span>
-    </div>
-    <button class="btn-modal-add" onclick="addDesdeModal()">🛒 Añadir al carrito</button>
   </div>
 </div>
 
 <!-- ════ DRAWER CARRITO ════ -->
 <div class="carrito-drawer" id="carrito-drawer">
   <div class="carrito-header">
-    <h3>🛒 Tu pedido</h3>
+    <div>
+      <h3>Tu pedido</h3>
+      <span class="sub">Exclusivas La Casica</span>
+    </div>
     <button class="btn-cerrar-carrito" onclick="toggleCarrito()">✕</button>
   </div>
   <div class="carrito-items" id="carrito-items"></div>
   <div class="carrito-footer">
-    <div class="carrito-total-linea">
+    <div class="carrito-total-fila">
       <span>Subtotal</span><span id="subtotal">0,00 €</span>
     </div>
     <div class="carrito-total-final">
-      <span>Total</span><span id="total-final">0,00 €</span>
+      <span>Total estimado</span><span id="total-final">0,00 €</span>
     </div>
-    <button class="btn-pedir-wa" onclick="pedirWhatsApp()">
-      💬 Pedir por WhatsApp
-    </button>
-    <button class="btn-pedir-email" onclick="pedirEmail()">
-      ✉️ Pedir por email
-    </button>
-    <p class="carrito-nota">Te contactaremos para confirmar el pedido y el método de pago</p>
+    <button class="btn-wa" onclick="pedirWhatsApp()">💬 Pedir por WhatsApp</button>
+    <button class="btn-email" onclick="pedirEmail()">✉ Pedir por email</button>
+    <p class="carrito-nota">Alejandro confirmará tu pedido y te indicará la forma de pago</p>
   </div>
 </div>
 
@@ -478,116 +787,79 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ── Datos de productos ──────────────────────────────────────────────
+// ── Datos ──────────────────────────────────────────────────────────
 const productos = [
   {
-    id: 1,
-    nombre: "Atún en Aceite de Girasol",
-    marca: "La Palmera · Formato Hostelería",
-    icono: "🐟",
-    categoria: "Conservas",
-    desc: "Atún listado (Katsuwonus pelamis) de textura firme y color claro. Ideal para ensaladillas, pizzas, rellenos de empanadas, pastas y bocadillos.",
-    features: ["Formato hostelería 1 kg", "Textura firme y color claro", "Ideal para cocina profesional", "Listo para usar"],
-    precio: 6.05,
-    unidad: "por bolsa (1 kg)",
-    caja: "Caja de 16 bolsas",
-    preciosCaja: 16
+    id:1, nombre:"Atún en Aceite de Girasol", marca:"La Palmera · Hostelería 1 kg",
+    icono:"🐟", cat:"Conservas",
+    desc:"Atún listado (Katsuwonus pelamis) de textura firme y color claro. Producto limpio y listo para usar, perfecto para cocinas profesionales que buscan rendimiento.",
+    features:["Formato hostelería 1 kg","Textura firme y color claro","Ideal para ensaladillas, pizzas y pastas","Listo para usar, sin preparación previa"],
+    precio:6.05, unidad:"por bolsa (1 kg)", caja:"Caja de 16 bolsas", xCaja:16
   },
   {
-    id: 2,
-    nombre: "AOVE Premium Picual",
-    marca: "Hacienda El Palo · Botella 500 ml",
-    icono: "🫒",
-    categoria: "Aceite de Oliva",
-    desc: "Aceite de Oliva Virgen Extra de alta calidad. Cosecha temprana en verde, filtrado. Ideal para crudo, aliños y cocina gourmet.",
-    features: ["Variedad Picual 100%", "Cosecha temprana en verde", "Aceitunas de fincas propias", "Natural y filtrado"],
-    precio: 12.15,
-    unidad: "por botella (500 ml)",
-    caja: "Caja de 12 botellas",
-    preciosCaja: 12
+    id:2, nombre:"AOVE Premium Picual 500 ml", marca:"Hacienda El Palo",
+    icono:"🫒", cat:"Aceite de Oliva",
+    desc:"Aceite de Oliva Virgen Extra de cosecha temprana en verde. Variedad Picual, de fincas propias, filtrado y natural. Ideal para aliños, crudo y alta cocina.",
+    features:["Variedad Picual 100%","Cosecha temprana en verde","Aceitunas de fincas propias","Natural, filtrado y sin aditivos"],
+    precio:12.15, unidad:"por botella (500 ml)", caja:"Caja de 12 botellas", xCaja:12
   },
   {
-    id: 3,
-    nombre: "AOVE Premium Picual",
-    marca: "Hacienda El Palo · Botella 100 ml",
-    icono: "🫒",
-    categoria: "Aceite de Oliva",
-    desc: "La misma calidad Premium en formato pequeño. Perfecto para bodas, eventos, comuniones y regalos gourmet personalizados.",
-    features: ["Variedad Picual 100%", "Formato evento / regalo", "Ideal bodas y comuniones", "Natural y filtrado"],
-    precio: 4.95,
-    unidad: "por botella (100 ml)",
-    caja: "Caja de 24 botellas",
-    preciosCaja: 24
+    id:3, nombre:"AOVE Premium Picual 100 ml", marca:"Hacienda El Palo · Formato Evento",
+    icono:"🫒", cat:"Aceite de Oliva",
+    desc:"La misma calidad Premium en formato pequeño y elegante. Pensado para bodas, eventos, comuniones y detalles gourmet. Un regalo que deja huella.",
+    features:["Variedad Picual 100%","Formato ideal para regalo","Perfecto para bodas y comuniones","Natural, filtrado y sin aditivos"],
+    precio:4.95, unidad:"por botella (100 ml)", caja:"Caja de 24 botellas", xCaja:24
   },
   {
-    id: 4,
-    nombre: "AOVE Picual Garrafa 5L",
-    marca: "Hacienda El Palo",
-    icono: "🍶",
-    categoria: "Aceite de Oliva",
-    desc: "AOVE de variedad Picual en formato garrafa PET de 5 litros. Perfecto para cocina profesional, válido para crudo y fritura.",
-    features: ["5 litros PET", "Apto para crudo y fritura", "Rico en antioxidantes", "Producción artesanal y mecánica"],
-    precio: 28.95,
-    unidad: "por garrafa (5 L)",
-    caja: "Caja de 3 garrafas",
-    preciosCaja: 3
+    id:4, nombre:"AOVE Picual Garrafa 5 L", marca:"Hacienda El Palo · PET Hostelería",
+    icono:"🍶", cat:"Aceite de Oliva",
+    desc:"AOVE de variedad Picual en garrafa PET de 5 litros. Producción artesanal y mecánica. Versátil para crudo y fritura, con toda la riqueza en antioxidantes.",
+    features:["5 litros PET","Apto para crudo y fritura","Rico en antioxidantes naturales","Producción artesanal y mecánica"],
+    precio:28.95, unidad:"por garrafa (5 L)", caja:"Caja de 3 garrafas", xCaja:3
   },
   {
-    id: 5,
-    nombre: "Pisto Fritada de Hortalizas",
-    marca: "Hortamed · Lata 3 kg",
-    icono: "🥫",
-    categoria: "Conservas",
-    desc: "Hortalizas frescas fritas en su punto exacto bañadas en salsa de tomate. Resultado casero garantizado para hostelería profesional.",
-    features: ["Lata A10 · 3 kg (2,65 kg neto)", "Fritada homogénea y consistente", "Ideal para HORECA", "Perfecto con carnes y pescados"],
-    precio: 5.80,
-    unidad: "por lata (3 kg)",
-    caja: "Caja de 6 unidades",
-    preciosCaja: 6
+    id:5, nombre:"Pisto Fritada de Hortalizas", marca:"Hortamed · Lata A10 3 kg",
+    icono:"🥫", cat:"Conservas",
+    desc:"Hortalizas frescas fritas en su punto exacto, bañadas en salsa de tomate. Resultado casero garantizado para hostelería. Formato A10 para máximo rendimiento.",
+    features:["Lata A10 · 2,65 kg neto","Fritada homogénea y consistente","Ideal para guarnición, rellenos y guisos","Perfecto para HORECA"],
+    precio:5.80, unidad:"por lata (3 kg)", caja:"Caja de 6 unidades", xCaja:6
   }
 ];
 
-// ── Estado del carrito ──────────────────────────────────────────────
-let carrito = []; // [{producto, cantidad}]
+let carrito = [];
 let productoActivo = null;
 
-// ── Renderizar tarjetas de producto ────────────────────────────────
+// ── Render tarjetas ────────────────────────────────────────────────
 function renderProductos() {
-  const grid = document.getElementById('productos-grid');
-  grid.innerHTML = productos.map(p => `
-    <div class="producto-card">
-      <div class="producto-img">
-        ${p.icono}
-        <span class="producto-badge-cat">${p.categoria}</span>
-      </div>
-      <div class="producto-body">
-        <div class="producto-nombre">${p.nombre}</div>
-        <div class="producto-marca">${p.marca}</div>
-        <div class="producto-desc">${p.desc.substring(0,90)}…</div>
-        <div class="producto-pie">
-          <div>
-            <div class="producto-precio">${p.precio.toFixed(2)} €</div>
-            <div class="producto-unidad">${p.unidad}</div>
-            <div class="producto-precio-caja">
-              ${(p.precio * p.preciosCaja).toFixed(2)} € / ${p.caja}
-            </div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:.4rem;">
-            <button class="btn-add" onclick="abrirModal(${p.id})">Ver más</button>
-            <button class="btn-add" onclick="addRapido(${p.id})" style="background:var(--dorado);">+ Carrito</button>
-          </div>
+  document.getElementById('productos-grid').innerHTML = productos.map(p => `
+    <div class="producto-card" onclick="abrirModal(${p.id})">
+      <div class="producto-icono">${p.icono}</div>
+      <div class="producto-cat">${p.cat}</div>
+      <div class="producto-nombre serif">${p.nombre}</div>
+      <div class="producto-marca">${p.marca}</div>
+      <div class="producto-desc">${p.desc.substring(0,95)}…</div>
+      <div class="producto-separador"></div>
+      <div class="producto-precio-bloque">
+        <div>
+          <div class="producto-precio serif">${p.precio.toFixed(2)} €</div>
+          <div class="producto-unidad-txt">${p.unidad}</div>
+          <div class="producto-caja-txt">${p.caja} · ${(p.precio*p.xCaja).toFixed(2)} €</div>
         </div>
       </div>
+      <button class="btn-ver" onclick="abrirModal(${p.id});event.stopPropagation()">
+        Ver producto <span class="btn-ver-flecha">→</span>
+      </button>
     </div>
   `).join('');
 }
 
-// ── Modal de producto ───────────────────────────────────────────────
+// ── Modal ──────────────────────────────────────────────────────────
 function abrirModal(id) {
   const p = productos.find(x => x.id === id);
   if (!p) return;
   productoActivo = p;
   document.getElementById('modal-icono').textContent = p.icono;
+  document.getElementById('modal-cat').textContent = p.cat;
   document.getElementById('modal-nombre').textContent = p.nombre;
   document.getElementById('modal-marca').textContent = p.marca;
   document.getElementById('modal-desc').textContent = p.desc;
@@ -595,15 +867,11 @@ function abrirModal(id) {
   document.getElementById('modal-unidad').textContent = p.unidad;
   document.getElementById('modal-caja').textContent = p.caja;
   document.getElementById('modal-qty').value = 1;
-  document.getElementById('modal-qty-info').textContent =
-    `Total: ${p.precio.toFixed(2)} €`;
-  const ul = document.getElementById('modal-features');
-  ul.innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
-  // Actualizar precio al cambiar cantidad
+  document.getElementById('modal-qty-info').innerHTML = `Total: <strong>${p.precio.toFixed(2)} €</strong>`;
+  document.getElementById('modal-features').innerHTML = p.features.map(f=>`<li>${f}</li>`).join('');
   document.getElementById('modal-qty').oninput = function() {
-    const qty = parseInt(this.value) || 1;
-    document.getElementById('modal-qty-info').textContent =
-      `Total: ${(p.precio * qty).toFixed(2)} €`;
+    const q = parseInt(this.value)||1;
+    document.getElementById('modal-qty-info').innerHTML = `Total: <strong>${(p.precio*q).toFixed(2)} €</strong>`;
   };
   document.getElementById('overlay').classList.add('activo');
   document.body.style.overflow = 'hidden';
@@ -616,116 +884,90 @@ function cerrarModal(e) {
 }
 function addDesdeModal() {
   if (!productoActivo) return;
-  const qty = parseInt(document.getElementById('modal-qty').value) || 1;
-  addAlCarrito(productoActivo, qty);
-  cerrarModal();
+  const q = parseInt(document.getElementById('modal-qty').value)||1;
+  addAlCarrito(productoActivo, q);
+  document.getElementById('overlay').classList.remove('activo');
+  document.body.style.overflow = '';
+  productoActivo = null;
 }
 
-// ── Add rápido desde tarjeta ────────────────────────────────────────
-function addRapido(id) {
-  const p = productos.find(x => x.id === id);
-  if (p) addAlCarrito(p, 1);
-}
-
-// ── Lógica del carrito ──────────────────────────────────────────────
-function addAlCarrito(producto, cantidad) {
-  const idx = carrito.findIndex(i => i.producto.id === producto.id);
-  if (idx >= 0) {
-    carrito[idx].cantidad += cantidad;
-  } else {
-    carrito.push({ producto, cantidad });
-  }
+// ── Carrito ────────────────────────────────────────────────────────
+function addAlCarrito(p, q) {
+  const idx = carrito.findIndex(i => i.producto.id === p.id);
+  idx >= 0 ? carrito[idx].cantidad += q : carrito.push({producto:p, cantidad:q});
   renderCarrito();
-  mostrarToast(`✓ ${producto.nombre} añadido`);
+  mostrarToast(`✦ ${p.nombre} añadido`);
 }
-function cambiarCantidad(id, delta) {
+function cambiarQty(id, delta) {
   const idx = carrito.findIndex(i => i.producto.id === id);
   if (idx < 0) return;
   carrito[idx].cantidad += delta;
   if (carrito[idx].cantidad <= 0) carrito.splice(idx, 1);
   renderCarrito();
 }
-function eliminarItem(id) {
+function eliminar(id) {
   carrito = carrito.filter(i => i.producto.id !== id);
   renderCarrito();
 }
-
 function renderCarrito() {
-  // Badge
-  const total = carrito.reduce((s, i) => s + i.cantidad, 0);
+  const total = carrito.reduce((s,i)=>s+i.cantidad,0);
   document.getElementById('carrito-badge').textContent = total;
-
-  // Items
   const cont = document.getElementById('carrito-items');
   if (!carrito.length) {
     cont.innerHTML = `<div class="carrito-vacio">
-      <span class="ico-vacio">🛒</span>
-      Tu carrito está vacío.<br>¡Añade algún producto!
+      <span class="ico-vacio">✦</span>
+      Tu pedido está vacío.<br>Explora el catálogo.
     </div>`;
   } else {
-    cont.innerHTML = carrito.map(i => `
+    cont.innerHTML = carrito.map(i=>`
       <div class="item-carrito">
-        <div class="ico">${i.producto.icono}</div>
+        <div class="item-ico">${i.producto.icono}</div>
         <div class="item-info">
-          <div class="nombre">${i.producto.nombre}</div>
-          <div class="precio-unit">${i.producto.precio.toFixed(2)} € · ${i.producto.unidad}</div>
+          <div class="item-nombre">${i.producto.nombre}</div>
+          <div class="item-precio-unit">${i.producto.precio.toFixed(2)} € · ${i.producto.unidad}</div>
         </div>
         <div class="item-controles">
-          <button class="btn-qty" onclick="cambiarCantidad(${i.producto.id},-1)">−</button>
+          <button class="btn-qty" onclick="cambiarQty(${i.producto.id},-1)">−</button>
           <span class="qty-num">${i.cantidad}</span>
-          <button class="btn-qty" onclick="cambiarCantidad(${i.producto.id},1)">+</button>
+          <button class="btn-qty" onclick="cambiarQty(${i.producto.id},1)">+</button>
         </div>
-        <div class="item-total">${(i.producto.precio * i.cantidad).toFixed(2)} €</div>
-        <button class="btn-eliminar" onclick="eliminarItem(${i.producto.id})">✕</button>
+        <div class="item-total">${(i.producto.precio*i.cantidad).toFixed(2)} €</div>
+        <button class="btn-eliminar" onclick="eliminar(${i.producto.id})">✕</button>
       </div>
     `).join('');
   }
-
-  // Totales
-  const subtotal = carrito.reduce((s, i) => s + i.producto.precio * i.cantidad, 0);
-  document.getElementById('subtotal').textContent = subtotal.toFixed(2) + ' €';
-  document.getElementById('total-final').textContent = subtotal.toFixed(2) + ' €';
+  const sub = carrito.reduce((s,i)=>s+i.producto.precio*i.cantidad,0);
+  document.getElementById('subtotal').textContent = sub.toFixed(2)+' €';
+  document.getElementById('total-final').textContent = sub.toFixed(2)+' €';
 }
-
-// ── Toggle drawer carrito ───────────────────────────────────────────
 function toggleCarrito() {
   document.getElementById('carrito-drawer').classList.toggle('abierto');
 }
 
-// ── Pedir por WhatsApp ──────────────────────────────────────────────
+// ── Pedir ──────────────────────────────────────────────────────────
 function pedirWhatsApp() {
-  if (!carrito.length) { mostrarToast('⚠ Añade productos primero'); return; }
-  const lineas = carrito.map(i =>
-    `• ${i.cantidad}x ${i.producto.nombre} (${i.producto.unidad}) → ${(i.producto.precio * i.cantidad).toFixed(2)} €`
-  ).join('%0A');
-  const total = carrito.reduce((s, i) => s + i.producto.precio * i.cantidad, 0);
-  const msg = `Hola Alejandro, quería hacer el siguiente pedido:%0A%0A${lineas}%0A%0A*Total estimado: ${total.toFixed(2)} €*%0A%0A¿Podrías confirmar disponibilidad y forma de pago? ¡Gracias!`;
-  window.open(`https://wa.me/34644366979?text=${msg}`, '_blank');
+  if (!carrito.length) { mostrarToast('✦ Añade productos primero'); return; }
+  const lineas = carrito.map(i=>`• ${i.cantidad}x ${i.producto.nombre} → ${(i.producto.precio*i.cantidad).toFixed(2)} €`).join('%0A');
+  const total = carrito.reduce((s,i)=>s+i.producto.precio*i.cantidad,0);
+  const msg = `Hola Alejandro, me gustaría hacer el siguiente pedido:%0A%0A${lineas}%0A%0A*Total estimado: ${total.toFixed(2)} €*%0A%0APor favor, confírmame disponibilidad y forma de pago. ¡Gracias!`;
+  window.open(`https://wa.me/34644366979?text=${msg}`,'_blank');
 }
-
-// ── Pedir por Email ─────────────────────────────────────────────────
 function pedirEmail() {
-  if (!carrito.length) { mostrarToast('⚠ Añade productos primero'); return; }
-  const lineas = carrito.map(i =>
-    `- ${i.cantidad}x ${i.producto.nombre} (${i.producto.unidad}): ${(i.producto.precio * i.cantidad).toFixed(2)} €`
-  ).join('\n');
-  const total = carrito.reduce((s, i) => s + i.producto.precio * i.cantidad, 0);
-  const asunto = encodeURIComponent('Pedido - Exclusivas La Casica');
-  const cuerpo = encodeURIComponent(
-    `Hola Alejandro,\n\nMe gustaría realizar el siguiente pedido:\n\n${lineas}\n\nTotal estimado: ${total.toFixed(2)} €\n\nPor favor, confírmame disponibilidad y forma de pago.\n\nGracias.`
-  );
+  if (!carrito.length) { mostrarToast('✦ Añade productos primero'); return; }
+  const lineas = carrito.map(i=>`- ${i.cantidad}x ${i.producto.nombre}: ${(i.producto.precio*i.cantidad).toFixed(2)} €`).join('\n');
+  const total = carrito.reduce((s,i)=>s+i.producto.precio*i.cantidad,0);
+  const asunto = encodeURIComponent('Pedido — Exclusivas La Casica');
+  const cuerpo = encodeURIComponent(`Hola Alejandro,\n\nQuiero realizar el siguiente pedido:\n\n${lineas}\n\nTotal estimado: ${total.toFixed(2)} €\n\nPor favor, confírmame disponibilidad y forma de pago.\n\nGracias.`);
   window.open(`mailto:Lacasicadeprimitivo@gmail.com?subject=${asunto}&body=${cuerpo}`);
 }
 
-// ── Toast ───────────────────────────────────────────────────────────
+// ── Toast ──────────────────────────────────────────────────────────
 function mostrarToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('visible');
-  setTimeout(() => t.classList.remove('visible'), 2200);
+  t.textContent = msg; t.classList.add('visible');
+  setTimeout(()=>t.classList.remove('visible'), 2200);
 }
 
-// ── Init ────────────────────────────────────────────────────────────
 renderProductos();
 renderCarrito();
 </script>
