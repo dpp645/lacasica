@@ -585,6 +585,36 @@ footer {
   .carrito-drawer { width: 100%; }
   .hero-stats { gap: 2.5rem; }
   footer { flex-direction: column; text-align: center; }
+  /* Botón carrito móvil visible */
+  #btn-carrito-movil {
+    display: flex !important;
+  }
+}
+/* Botón carrito flotante en móvil */
+#btn-carrito-movil {
+  display: none;
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  z-index: 150;
+  background: var(--dorado);
+  color: var(--negro);
+  border: none;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(201,168,76,.5);
+  transition: transform .2s, background .2s;
+}
+#btn-carrito-movil:hover { transform: scale(1.08); background: var(--dorado-claro); }
+#badge-movil {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--negro); color: var(--dorado);
+  border-radius: 50%; width: 20px; height: 20px;
+  font-size: .7rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--dorado);
 }
 </style>
 </head>
@@ -760,6 +790,12 @@ footer {
   </div>
 </div>
 
+<!-- Botón carrito flotante móvil -->
+<button id="btn-carrito-movil" onclick="toggleCarrito()">
+  🛒
+  <span id="badge-movil">0</span>
+</button>
+
 <!-- ════ DRAWER CARRITO ════ -->
 <div class="carrito-drawer" id="carrito-drawer">
   <div class="carrito-header">
@@ -922,6 +958,7 @@ function eliminar(id) {
 function renderCarrito() {
   const total = carrito.reduce((s,i)=>s+i.cantidad,0);
   document.getElementById('carrito-badge').textContent = total;
+  document.getElementById('badge-movil').textContent = total;
   const cont = document.getElementById('carrito-items');
   if (!carrito.length) {
     cont.innerHTML = `<div class="carrito-vacio">
