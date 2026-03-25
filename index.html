@@ -777,9 +777,14 @@ footer {
     <div class="carrito-total-final">
       <span>Total estimado</span><span id="total-final">0,00 €</span>
     </div>
-    <button class="btn-wa" onclick="pedirWhatsApp()">💬 Pedir por WhatsApp</button>
+    <button class="btn-wa" onclick="pagarStripe()" id="btn-stripe">
+      💳 Pagar con tarjeta
+    </button>
+    <button class="btn-wa" onclick="pedirWhatsApp()" style="background:#25d366;margin-top:.5rem">
+      💬 Pedir por WhatsApp
+    </button>
     <button class="btn-email" onclick="pedirEmail()">✉ Pedir por email</button>
-    <p class="carrito-nota">Alejandro confirmará tu pedido y te indicará la forma de pago</p>
+    <p class="carrito-nota">Pago 100% seguro con Stripe · También puedes pedir por WhatsApp</p>
   </div>
 </div>
 
@@ -966,7 +971,43 @@ function pedirEmail() {
   window.open(`mailto:Lacasicadeprimitivo@gmail.com?subject=${asunto}&body=${cuerpo}`);
 }
 
-// ── Toast ──────────────────────────────────────────────────────────
+// ── Pagar con Stripe ───────────────────────────────────────────────
+async function pagarStripe() {
+  if (!carrito.length) { mostrarToast('✦ Añade productos primero'); return; }
+  const btn = document.getElementById('btn-stripe');
+  btn.textContent = 'Procesando...';
+  btn.disabled = true;
+  try {
+    // Llamamos a nuestra función serverless en Vercel
+    // IMPORTANTE: cambia esta URL por la tuya de Vercel cuando la tengas
+    const res = await fetch('https://lacasica.vercel.app/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        items: carrito.map(i => ({
+          nombre:   i.producto.nombre,
+          unidad:   i.producto.unidad,
+          precio:   i.producto.precio,
+          cantidad: i.cantidad
+        }))
+      })
+    });
+    const data = await res.json();
+    if (data.url) {
+      // Redirigimos al checkout de Stripe
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || 'Error desconocido');
+    }
+  } catch (err) {
+    mostrarToast('⚠ Error al procesar el pago');
+    console.error(err);
+    btn.textContent = '💳 Pagar con tarjeta';
+    btn.disabled = false;
+  }
+}
+
+
 function mostrarToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('visible');
